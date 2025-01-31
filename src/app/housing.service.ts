@@ -5,7 +5,7 @@ import { HousingLocation } from './housing-location';
   providedIn: 'root'
 })
 export class HousingService {
-    url= 'http://localhost:3000/locations';
+    url= 'https://angular-homes-project-107b850a057194833ce2de9384ccbd88b83dbc0c.vercel.app/api/data';
  
   constructor() { }
 
