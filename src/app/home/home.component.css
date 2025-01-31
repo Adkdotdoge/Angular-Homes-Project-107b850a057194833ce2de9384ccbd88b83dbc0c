@@ -59,11 +59,14 @@
     text-transform: uppercase;
     font-size: 12pt;
   }
+  form {
+    display: flex;
+    width: 100vw;
+  }
   input {
     font-size: 16pt;
     margin-bottom: 15px;
     padding: 10px;
-    width: 400px;
     border-top: none;
     border-right: none;
     border-left: none;

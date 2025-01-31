@@ -9,10 +9,11 @@ import { HousingService } from '../housing.service';
   imports: [CommonModule, HousingLocationComponent],
   template: `
 <section>
-    <form>
-        <input type="text" placeholder="filter by city" #filter>
-        <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
-    </form>
+<form class="d-flex justify content-center">
+  <input type="text" class="form-control me-2" placeholder="Filter by city" #filter>
+  <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
+</form>
+
 </section>
 <section class="results">
   <app-housing-location *ngFor="let housingLocation of filteredLocationList" [housingLocation]="housingLocation"></app-housing-location>
