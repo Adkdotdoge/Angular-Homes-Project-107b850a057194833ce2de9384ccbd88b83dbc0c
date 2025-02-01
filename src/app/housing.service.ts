@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HousingLocation } from './housing-location';
-import { environment } from '../app/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,23 +11,22 @@ export class HousingService {
 
   async getAllHousingLocations(): Promise<HousingLocation[]> {
     try {
-      const response = await fetch(this.url); // url = 'http://localhost:3000/locations'
+      const response = await fetch(this.url);
       
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-  
+
       const jsonData = await response.json();
-  
-      // ✅ Directly return the array
-      return jsonData ?? [];
-  
+      
+      // ✅ Extract locations array from API response
+      return jsonData.houses[0].locations ?? [];
+      
     } catch (error) {
       console.error("Error fetching housing locations:", error);
       return [];
     }
   }
-  
 
   async getHousingLocationById(id: number): Promise<HousingLocation | undefined> {
     try {
@@ -37,18 +35,17 @@ export class HousingService {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-  
+
       const jsonData = await response.json();
-  
-      // ✅ Find the correct object by `id`
-      return jsonData.find((location: HousingLocation) => location.id === id);
+
+      // ✅ Find and return the specific location by ID
+      return jsonData.houses[0].locations.find((location: HousingLocation) => location.id === id);
       
     } catch (error) {
       console.error("Error fetching housing location by ID:", error);
       return undefined;
     }
   }
-  
 
   submitApplication(firstName: string, lastName: string, email: string): void {
     console.log(`Application submitted: ${firstName} ${lastName}, Email: ${email}`);
